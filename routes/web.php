@@ -20,6 +20,9 @@ Route::get('lppn', [HomeController::class, 'lppn']);
 Route::get('apbn', [HomeController::class, 'apbn']);
 Route::get('lkppn', [HomeController::class, 'lkppn']);
 Route::get('lpj', [HomeController::class, 'lpj']);
+Route::post('aspirasi', function (){
+    return redirect('/')->with('message', 'Mohon maaf 🙏 fitur ini masih dalam pengembangan');
+});
 // ===================== End Menu Nagari
 
 // ===================== Menu PPID Nagari

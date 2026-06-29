@@ -1,6 +1,13 @@
 @extends('pages.layout')
 
 @section('content')
+
+@if (session('message'))
+    <script>
+      alert("{{session('message')}}")
+    </script>
+@endif
+
 <section class="hero-section" style="background-image: url('{{ asset('assets/images/bg-image2.jpg') }}');">
   <div class="hero-overlay"></div>
   
@@ -169,7 +176,7 @@
                 <i class="fa-solid fa-map-location-dot fa-lg text-gold me-2"></i>
                 <div>
                   <small class="text-muted d-block lh-1">Luas Wilayah</small>
-                  <span class="fw-bold text-dark-text text-nowrap">24.5 Km²</span>
+                  <span class="fw-bold text-dark-text text-nowrap">70 Km²</span>
                 </div>
               </div>
             </div>
@@ -178,11 +185,11 @@
                 <i class="fa-solid fa-users-line fa-lg text-primary me-2"></i>
                 <div>
                   <small class="text-muted d-block lh-1">Populasi</small>
-                  <span class="fw-bold text-dark-text text-nowrap">8.420 Jiwa</span>
+                  <span class="fw-bold text-dark-text text-nowrap">35.000 Jiwa</span>
                 </div>
               </div>
             </div>
-            <div class="col-sm-4 col-12 mt-sm-0 mt-2">
+            {{-- <div class="col-sm-4 col-12 mt-sm-0 mt-2">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fa-award fa-lg text-green me-2"></i>
                 <div>
@@ -190,7 +197,7 @@
                   <span class="fw-bold text-dark-text text-nowrap">Mandiri (IDM)</span>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
@@ -553,7 +560,8 @@
 
       <div class="col-lg-7 animate__animated animate__fadeInRight">
         <div class="glass-card bento-card p-4 p-md-5 h-100 justify-content-center d-flex flex-column">
-          <form>
+          <form action="{{ url('aspirasi') }}" method="POST">
+            @csrf
             <div class="row g-4">
               <div class="col-md-6">
                 <div class="form-floating custom-floating">
@@ -612,17 +620,11 @@
   <div class="container-fluid">
 
       <div class="position-relative overflow-hidden rounded-5 shadow-sm border border-light-subtle" style="height: 480px;">
-          
-          <iframe 
-              class="w-100 h-100 border-0"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127672.51269361611!2d99.93065207801908!3d-0.29336402598197786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd5734a9a2d9a81%3A0x1678d9f8d98d36db!2sKec.%20Lubuk%20Basung%2C%20Kabupaten%20Agam%2C%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1782364512458!5m2!1sid!2sid" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              style="filter: grayscale(10%) contrast(105%);">
-          </iframe>
+        <iframe 
+        class="w-100 h-100 border-0"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.027706720548!2d100.02549648284909!3d-0.31785086676517177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd50d72cf2b6abb%3A0xc454edb634a851e0!2sKantor%20Wali%20Nagari%20Lubuk%20Basung!5e0!3m2!1sid!2sid!4v1782701507207!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
-          <div class="map-floating-info-card card-glass p-4 d-none d-md-block">
+          {{-- <div class="map-floating-info-card card-glass p-4 d-none d-md-block">
               <h5 class="fw-bold text-slate-900 mb-3 d-flex align-items-center gap-2">
                   <i class="fa-solid fa-building-flag text-teal"></i> Pusat Koordinasi
               </h5>
@@ -650,7 +652,7 @@
                       <i class="fa-solid fa-route"></i> Petunjuk Arah
                   </a>
               </div>
-          </div>
+          </div> --}}
 
       </div>
   </div>

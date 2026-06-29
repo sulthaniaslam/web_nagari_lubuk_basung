@@ -162,7 +162,7 @@
           </div>
           <div class="brand-text">
             WEBSITE<span class="text-crimson">{{ $data['nama_instansi'] }}</span>
-            <small>Portal Resmi Pelayanan</small>
+            <small>Portal Resmi Pelayanan Nagari</small>
           </div>
         </a>
 
@@ -271,11 +271,11 @@
             <div class="col-lg-2 col-md-6 ps-lg-4 animate__animated animate__fadeIn">
               <h5 class="footer-widget-title">Layanan Publik</h5>
               <ul class="list-unstyled footer-links-list">
-                <li><a href="#home"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Beranda Utama</a></li>
-                <li><a href="#tentang"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Info & Regulasi</a></li>
-                <li><a href="#berita"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Kabar Nagari</a></li>
-                <li><a href="#kritik-saran"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Aspirasi Warga</a></li>
-                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Sistem PPID</a></li>
+                <li><a href="{{ url('/') }}"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Home</a></li>
+                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Info Nagari</a></li>
+                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Informasi Publik</a></li>
+                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>PPID Nagari</a></li>
+                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>PKK Nagari</a></li>
               </ul>
             </div>
   
@@ -284,15 +284,15 @@
               <ul class="list-unstyled footer-contact-info">
                 <li>
                   <div class="contact-icon-box bg-rgba-crimson"><i class="fa-solid fa-location-dot text-crimson"></i></div>
-                  <span>Jl. Raya Utama No. 12, Kompleks Perkantoran Pusat Nagari</span>
+                  <span>Jl. Tuanku Imam Bonjol, Nagari Lubuk Basung, Kecamatan Lubuk Basung, Kabupaten Agam, Sumatera Barat 26452</span>
                 </li>
                 <li>
                   <div class="contact-icon-box bg-rgba-green"><i class="fa-solid fa-phone text-green"></i></div>
-                  <span>+62 812-3456-7890</span>
+                  <span>+62 812-6699-6111</span>
                 </li>
                 <li>
                   <div class="contact-icon-box bg-rgba-gold"><i class="fa-solid fa-envelope text-gold"></i></div>
-                  <span class="text-break">sekretariat@nagari.go.id</span>
+                  <span class="text-break">kantorwalinarilubukbasung@gmail.com</span>
                 </li>
               </ul>
             </div>
@@ -301,12 +301,12 @@
               <h5 class="footer-widget-title">Jam Pelayanan</h5>
               <div class="glass-card p-3 border-0 bg-white-70 shadow-none mb-3">
                 <div class="d-flex justify-content-between small mb-2">
-                  <span class="text-muted fw-semibold">Senin - Kamis:</span>
-                  <span class="fw-bold text-darkblue">08:00 - 16:00</span>
+                  <span class="text-muted fw-semibold">Senin - Jumat:</span>
+                  <span class="fw-bold text-darkblue">07:30 - 16:00</span>
                 </div>
                 <div class="d-flex justify-content-between small mb-2">
-                  <span class="text-muted fw-semibold">Jumat:</span>
-                  <span class="fw-bold text-darkblue">08:00 - 16:30</span>
+                  <span class="text-muted fw-semibold">Khusus Jumat:</span>
+                  <span class="fw-bold text-darkblue">07:30 - 16:30</span>
                 </div>
                 <div class="d-flex justify-content-between small text-crimson fw-bold">
                   <span>Sabtu - Minggu:</span>
