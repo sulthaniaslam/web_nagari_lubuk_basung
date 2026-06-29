@@ -67,8 +67,8 @@
           <div class="card-infobox bg-white border p-4 p-md-5 rounded-5 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden">
             <div class="ambient-card-bg"></div>
             <div class="position-relative" style="z-index: 2;">
-              <span class="badge-premium-pill mb-3"><i class="fa-solid fa-fingerprint me-2 text-crimson"></i>Eksistensi Regulasi</span>
-              <h2 class="fw-extrabold text-darkblue mb-3 font-jakarta header-title-custom">Maklumat Pengantar</h2>
+              <span class="badge-premium-pill mb-3"><i class="fa-solid fa-fingerprint me-2 text-crimson"></i>PPID {{ $data['nama_instansi'] }}</span>
+              <h2 class="fw-extrabold text-darkblue mb-3 font-jakarta header-title-custom">Profil PPID</h2>
               <div class="ppid-editorial-text text-secondary font-jakarta">
                 {!! $ppid['profile_ppid'] !!}
               </div>
@@ -78,6 +78,7 @@
       </div>
 
       <div class="row g-4 mb-5">
+        <!-- Visi Box -->
         <div class="col-lg-6 animate__animated animate__fadeInLeft">
           <div class="card border-0 shadow-2xs rounded-5 bg-white p-4 p-md-5 h-100 d-flex flex-column justify-content-between hover-card-premium">
             <div>
@@ -92,14 +93,18 @@
                 {!! $ppid['visi_ppid'] !!}
               </div>
             </div>
-            <div class="image-mask-frame rounded-4 overflow-hidden" style="height: 220px;">
+            <!-- 🌟 MODIFIKASI: Menambahkan fungsi click untuk Lightbox pada gambar Visi -->
+            <div class="image-mask-frame rounded-4 overflow-hidden position-relative" style="height: 220px;">
               <img src="{{ env('API_STORAGE') . $ppid['gambar_visi_ppid'] }}" 
                    alt="Visi" class="w-100 h-100 object-fit-cover cinematic-zoom"
+                   style="cursor: pointer;"
+                   onclick="triggerPpidViewer(this.src)"
                    onerror="this.onerror=null; this.src='https://placehold.co/600x350/1e3a8a/ffffff?text=Visi+PPID';">
             </div>
           </div>
         </div>
-
+      
+        <!-- Misi Box -->
         <div class="col-lg-6 animate__animated animate__fadeInRight">
           <div class="card border-0 shadow-2xs rounded-5 bg-white p-4 p-md-5 h-100 d-flex flex-column justify-content-between hover-card-premium">
             <div>
@@ -114,14 +119,18 @@
                 {!! $ppid['misi_ppid'] !!}
               </div>
             </div>
-            <div class="image-mask-frame rounded-4 overflow-hidden" style="height: 220px;">
+            <!-- 🌟 MODIFIKASI: Menambahkan fungsi click untuk Lightbox pada gambar Misi -->
+            <div class="image-mask-frame rounded-4 overflow-hidden position-relative" style="height: 220px;">
               <img src="{{ env('API_STORAGE') . $ppid['gambar_misi_ppid'] }}" 
                    alt="Misi" class="w-100 h-100 object-fit-cover cinematic-zoom"
+                   style="cursor: pointer;"
+                   onclick="triggerPpidViewer(this.src)"
                    onerror="this.onerror=null; this.src='https://placehold.co/600x350/dc2626/ffffff?text=Misi+PPID';">
             </div>
           </div>
         </div>
       </div>
+
 
       <div class="row g-5 align-items-stretch mb-5 pb-4 animate__animated animate__fadeInUp">
         <div class="col-lg-7 order-2 order-lg-1">
@@ -139,10 +148,12 @@
         
         <div class="col-lg-5 order-1 order-lg-2">
           <div class="sticky-box-wrapper h-100">
-            <div class="card-epic-frame rounded-5 overflow-hidden h-100 shadow-sm position-relative">
+            <div class="image-mask-frame rounded-4 overflow-hidden position-relative" style="height: 220px;">
               <img src="{{ env('API_STORAGE') . $ppid['gambar_tugas_fungsi_ppid'] }}" 
-                   alt="Tugas Fungsi" class="w-100 h-100 object-fit-cover cinematic-zoom"
-                   onerror="this.onerror=null; this.src='https://placehold.co/700x900/475569/ffffff?text=Tugas+Fungsi';">
+                   alt="Misi" class="w-100 h-100 object-fit-cover cinematic-zoom"
+                   style="cursor: pointer;"
+                   onclick="triggerPpidViewer(this.src)"
+                   onerror="this.onerror=null; this.src='https://placehold.co/600x350/dc2626/ffffff?text=Misi+PPID';">
             </div>
           </div>
         </div>

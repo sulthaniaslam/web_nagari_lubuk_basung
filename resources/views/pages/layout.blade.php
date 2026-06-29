@@ -3,11 +3,154 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Website Resmi Nagari</title>
+
+    <!-- --- SEO DASAR --- -->
+    <title>Website Nagari Lubuk Basung</title>
+    <meta name="description" content="Website Nagari Lubuk Basung Kabupaten Agam Sumatera Barat">
+    <meta name="keywords" content="website, nagari, lubukbasung, agam, sumatera barat">
+    <meta name="author" content="Diskominfo Agam">
+    <link rel="canonical" href="https://www.nagarilubukbasung.agamkab.go.id/halaman-ini"> <!-- Mencegah duplikasi konten -->
+
+    <!-- --- ROBOTS (Mengatur Cara Google Mengindeks) --- -->
+    <meta name="robots" content="index, follow"> <!-- Mengizinkan Google mengindeks halaman dan mengikuti link -->
+
+    <!-- --- OPEN GRAPH (Untuk Tampilan Share di WhatsApp, Facebook, LinkedIn) --- -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.nagarilubukbasung.agamkab.go.id/halaman-ini">
+    <meta property="og:title" content="Website Nagari Lubuk Basung">
+    <meta property="og:description" content="Website Nagari Lubuk Basung Kabupaten Agam Sumatera Barat">
+    <meta property="og:image" content="https://www.nagarilubukbasung.agamkab.go.id/images/thumbnail-share.jpg"> <!-- Ukuran ideal 1200x630 pixel -->
+
+    <!-- --- TWITTER CARD (Untuk Tampilan Share di X / Twitter) --- -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.nagarilubukbasung.agamkab.go.id/halaman-ini">
+    <meta name="twitter:title" content="Website Nagari Lubuk Basung">
+    <meta name="twitter:description" content="Twitter Nagari Lubuk Basung">
+    <meta name="twitter:image" content="https://www.nagarilubukbasung.agamkab.go.id/images/thumbnail-share.jpg">
+
+    <!-- --- FAVICON (Logo Kecil di Tab Browser) --- -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- --- SCHEMA MARKUP / STRUCTURED DATA (Membuat Google Paham Jenis Web Anda) --- -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Nagari Lubuk Basung",
+      "url": "https://www.nagarilubukbasung.agamkab.go.id/",
+      "description": "Website Nagari Lubuk Basung Kabupaten Agam Sumatera Barat"
+    }
+    </script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+    <style>
+      /* --- Gaya Widget Aksesibilitas --- */
+      .accessibility-toggle {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: #0056b3;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+          z-index: 9999;
+      }
+      .accessibility-panel {
+          position: fixed;
+          bottom: 90px;
+          right: 20px;
+          background: white;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          padding: 15px;
+          width: 280px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          display: none;
+          z-index: 9999;
+          color: #333 !important;
+      }
+      .accessibility-panel.active {
+          display: block;
+      }
+      .accessibility-panel h3 {
+          margin-top: 0;
+          border-bottom: 1px solid #eee;
+          padding-bottom: 8px;
+          font-size: 18px;
+      }
+      .acc-group {
+          margin-bottom: 15px;
+      }
+      .acc-group label {
+          display: block;
+          font-weight: bold;
+          font-size: 14px;
+          margin-bottom: 5px;
+      }
+      .acc-btn-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+      }
+      .acc-btn {
+          padding: 8px;
+          background: #f0f0f0;
+          border: 1px solid #bbb;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 13px;
+          transition: background 0.2s;
+      }
+      .acc-btn:hover, .acc-btn.active {
+          background: #ddd;
+          border-color: #333;
+      }
+      .acc-btn.active {
+          background: #0056b3;
+          color: white;
+      }
+
+      /* --- CSS Modifiers untuk Fitur Disabilitas --- */
+      /* Kontras Tinggi & Invert */
+      body.acc-high-contrast {
+          background-color: #000 !important;
+          color: #fff !important;
+      }
+      body.acc-high-contrast a, body.acc-high-contrast button {
+          color: #00ff00 !important;
+      }
+      body.acc-invert {
+          filter: invert(1) hue-rotate(180deg);
+      }
+      body.acc-monochrome {
+          filter: grayscale(100%);
+      }
+
+      /* Kursor Besar */
+      body.acc-big-cursor, body.acc-big-cursor * {
+          cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M0,0 L0,24 L6,18 L12,30 L16,28 L10,16 L18,16 Z" fill="black" stroke="white" stroke-width="2"/></svg>'), auto !important;
+      }
+
+      /* Sorot Teks (Highlight) */
+      body.acc-highlight-hover p:hover, 
+      body.acc-highlight-hover h1:hover, 
+      body.acc-highlight-hover h2:hover, 
+      body.acc-highlight-hover li:hover {
+          background-color: yellow !important;
+          color: black !important;
+      }
+    </style>
+
   </head>
   <body>
 
@@ -191,6 +334,116 @@
           </div>
         </div>
     </footer>
+
+    <button class="accessibility-toggle" id="accToggle" aria-label="Menu Aksesibilitas" title="Menu Aksesibilitas">♿</button>
+    
+    <div class="accessibility-panel" id="accPanel">
+        <h3>Menu Aksesibilitas</h3>
+        
+        <!-- Fitur Teks -->
+        <div class="acc-group">
+            <label>Ukuran Teks</label>
+            <div class="acc-btn-grid">
+                <button class="acc-btn" onclick="changeTextSize(1.2)">Perbesar</button>
+                <button class="acc-btn" onclick="changeTextSize(1)">Normal</button>
+            </div>
+        </div>
+
+        <!-- Fitur Visual / Buta Warna -->
+        <div class="acc-group">
+            <label>Tampilan &amp; Warna</label>
+            <div class="acc-btn-grid">
+                <button class="acc-btn" id="btnContrast" onclick="toggleFeature('acc-high-contrast', 'btnContrast')">Kontras Tinggi</button>
+                <button class="acc-btn" id="btnMonochrome" onclick="toggleFeature('acc-monochrome', 'btnMonochrome')">Monokrom</button>
+                <button class="acc-btn" id="btnInvert" onclick="toggleFeature('acc-invert', 'btnInvert')">Invert Warna</button>
+                <button class="acc-btn" id="btnCursor" onclick="toggleFeature('acc-big-cursor', 'btnCursor')">Kursor Besar</button>
+            </div>
+        </div>
+
+        <!-- Fitur Sorot & Pembaca Suara -->
+        <div class="acc-group">
+            <label>Navigasi &amp; Membaca</label>
+            <div class="acc-btn-grid">
+                <button class="acc-btn" id="btnHighlight" onclick="toggleFeature('acc-highlight-hover', 'btnHighlight')">Sorot Teks</button>
+                <button class="acc-btn" id="btnScreenReader" onclick="toggleScreenReader()">Baca Suara</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logika Fitur -->
+    <script>
+        const accToggle = document.getElementById('accToggle');
+        const accPanel = document.getElementById('accPanel');
+        let currentZoom = 1;
+        let isScreenReaderActive = false;
+
+        // Buka-tutup panel menu
+        accToggle.addEventListener('click', () => {
+            accPanel.classList.toggle('active');
+        });
+
+        // Fungsi mengubah ukuran teks
+        function changeTextSize(scale) {
+            if (scale === 1) currentZoom = 1;
+            else currentZoom *= scale;
+            
+            // Batasi agar tidak terlalu besar/kecil
+            if (currentZoom > 2) currentZoom = 2;
+            if (currentZoom < 0.8) currentZoom = 0.8;
+            
+            document.body.style.fontSize = currentZoom + 'em';
+        }
+
+        // Fungsi Toggle Fitur CSS (Kontras, Buta Warna, Kursor, Sorot)
+        function toggleFeature(className, btnId) {
+            const element = document.body;
+            const button = document.getElementById(btnId);
+            
+            element.classList.toggle(className);
+            button.classList.toggle('active');
+        }
+
+        // Fitur Suara (Text-to-Speech saat Hover)
+        function toggleScreenReader() {
+            const btn = document.getElementById('btnScreenReader');
+            isScreenReaderActive = !isScreenReaderActive;
+
+            if (isScreenReaderActive) {
+                btn.classList.add('active');
+                // Menggunakan 'mouseover' agar mendeteksi saat kursor masuk ke elemen teks
+                document.addEventListener('mouseover', speakTextHandler);
+            } else {
+                btn.classList.remove('active');
+                document.removeEventListener('mouseover', speakTextHandler);
+                window.speechSynthesis.cancel(); // Matikan suara jika fitur dimatikan
+            }
+        }
+
+        // Handler untuk mendeteksi elemen yang dilewati kursor dan membacanya
+        function speakTextHandler(e) {
+            // Jalur aman: Jangan baca teks jika kursor berada di dalam panel menu aksesibilitas
+            if (accPanel.contains(e.target) || accToggle.contains(e.target)) return;
+
+            // Targetkan hanya elemen teks agar tidak membaca kontainer kosong
+            const validTags = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'LI', 'A', 'SPAN', 'BUTTON'];
+            if (!validTags.includes(e.target.tagName)) return;
+
+            const textToSpeak = e.target.innerText || e.target.textContent;
+            
+            if (textToSpeak && textToSpeak.trim().length > 0) {
+                // PENTING: Langsung matikan suara sebelumnya agar tidak menumpuk saat kursor digeser cepat
+                window.speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(textToSpeak.trim());
+                utterance.lang = 'id-ID'; // Set suara ke Bahasa Indonesia
+                
+                // Opsional: Sedikit kurangi kecepatan (rate) agar lebih mudah dipahami saat mode hover aktif
+                utterance.rate = 1.0; 
+
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>

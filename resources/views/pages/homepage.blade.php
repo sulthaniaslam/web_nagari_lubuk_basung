@@ -1,7 +1,7 @@
 @extends('pages.layout')
 
 @section('content')
-<section class="hero-section" style="background-image: url('{{ asset('assets/images/images22.jpg') }}');">
+<section class="hero-section" style="background-image: url('{{ asset('assets/images/bg-image2.jpg') }}');">
   <div class="hero-overlay"></div>
   
   <div class="container position-relative" style="z-index: 2;">
@@ -655,6 +655,7 @@
       </div>
   </div>
 </section>
+
 
 <style>
   /* CSS Posisi Kartu Informasi Melayang */
