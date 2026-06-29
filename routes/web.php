@@ -1,0 +1,44 @@
+<?php
+
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class, 'index']);
+
+// ===================== Menu Nagari
+Route::get('/visimisi', [HomeController::class, 'visimisi']);
+Route::get('/struktur_nagari', [HomeController::class, 'strukturNagari']);
+Route::get('/berita', [HomeController::class, 'berita']);
+Route::get('/berita-detail/{slug}', [HomeController::class, 'beritaDetail']);
+Route::get('/pesona_wisata/{id}', [HomeController::class, 'pesonaWisata']);
+Route::get('/perangkat-nagari', [HomeController::class, 'perangkatNagari']);
+Route::get('/galeri', [HomeController::class, 'galeri']);
+Route::get('rpjm', [HomeController::class, 'rpjm']);
+Route::get('durkp', [HomeController::class, 'durkp']);
+Route::get('lppn', [HomeController::class, 'lppn']);
+Route::get('apbn', [HomeController::class, 'apbn']);
+Route::get('lkppn', [HomeController::class, 'lkppn']);
+Route::get('lpj', [HomeController::class, 'lpj']);
+// ===================== End Menu Nagari
+
+// ===================== Menu PPID Nagari
+Route::get('ppid_nagari', [HomeController::class, 'ppidNagari']);
+Route::get('ppid_informasi_publik', [HomeController::class, 'ppidInformasiPublik']);
+Route::get('ppid_permohonan_informasi', [HomeController::class, 'ppidPermohonanInformasi']);
+Route::post('ppid_permohonan_informasi/send', [HomeController::class, 'ppidPermohonanInformasiSend']);
+Route::get('ppid_cek_permohonan_informasi', [HomeController::class, 'ppidCekPermohonanInformasi']);
+Route::post('ppid_permohonan_informasi/check', [HomeController::class, 'ppidPermohonanInformasiCheck']);
+// ===================== End Menu PPID Nagari
+
+
+// ===================== Menu PKK Nagari
+Route::get('/profil_pkk', [HomeController::class, 'profilPKK']);
+Route::get('/pkk_program_kerja', [HomeController::class, 'pkkProgramKerja']);
+Route::get('/pkk_kegiatan', [HomeController::class, 'pkkKegiatan']);
+Route::get('/pkk_pengurus', [HomeController::class, 'pkkPengurus']);
+// ===================== End Menu PKK Nagari
+
+
+
+
