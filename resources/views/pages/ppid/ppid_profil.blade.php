@@ -146,7 +146,7 @@
           </div>
         </div>
         
-        <div class="col-lg-5 order-1 order-lg-2">
+        {{-- <div class="col-lg-5 order-1 order-lg-2">
           <div class="sticky-box-wrapper h-100">
             <div class="image-mask-frame rounded-4 overflow-hidden position-relative" style="height: 220px;">
               <img src="{{ env('API_STORAGE') . $ppid['gambar_tugas_fungsi_ppid'] }}" 
@@ -156,7 +156,7 @@
                    onerror="this.onerror=null; this.src='https://placehold.co/600x350/dc2626/ffffff?text=Misi+PPID';">
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
 
       <div class="card border-0 shadow-lg rounded-5 bg-white p-4 p-md-5 text-center animate__animated animate__fadeInUp position-relative overflow-hidden">

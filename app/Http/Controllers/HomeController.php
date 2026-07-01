@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -190,7 +191,7 @@ class HomeController extends Controller
                 file_get_contents($fileFoto->getRealPath()), 
                 $fileFoto->getClientOriginalName()
             )
-            ->post('http://localhost:8000/api/ppid/permohonan_informasi/ajaxBuatPermohonanInformasi'); 
+            ->post(env('API_URL') . 'api/ppid/permohonan_informasi/ajaxBuatPermohonanInformasi'); 
 
         // Ambil data response dalam bentuk array JSON
         $result = $response->json();
@@ -227,7 +228,7 @@ class HomeController extends Controller
 
         $response = Http::withHeaders([ 'Accept' => 'application/json' ])
             ->asForm() 
-            ->post('http://localhost:8000/api/ppid/permohonan_informasi/ajaxCheckPermohonanInformasi', [
+            ->post(env('API_URL') . 'api/ppid/permohonan_informasi/ajaxCheckPermohonanInformasi', [
                 'kode_registrasi' => $request->input('kode_registrasi'),
                 'recaptcha_token' => $captchaToken,
             ]); 
@@ -249,6 +250,146 @@ class HomeController extends Controller
             return back()->withErrors(['error' => $pesanGagal])->withInput();
         }
     }
+
+    public function ppidPengajuanKeberatan(){
+        $data = $this->getNagariData();
+        return view('pages.ppid.ppid_pengajuan_keberatan', [
+            'data'  => $data
+        ]);
+    }
+
+    public function ppidPengajuanKeberatanSend(Request $request) 
+    {
+        // 1. Ambil g-recaptcha-response dari form frontend
+        $captchaToken = $request->input('g-recaptcha-response');
+
+        // 2. Siapkan data array persis seperti struktur JSON yang Anda inginkan
+        $payload = [
+            '_token'                => $request->input('_token'),
+            'recaptcha_token'       => $captchaToken,
+            'kode_registrasi'       => $request->input('kode_registrasi'), // atau generate otomatis
+            'kategori'              => $request->input('kategori'),
+            'nama'                  => $request->input('nama'),
+            'nik'                   => $request->input('nik'),
+            'pekerjaan'             => $request->input('pekerjaan'),
+            'no_telp'               => $request->input('no_telp'),
+            'email'                 => $request->input('email'),
+            'alasan'                => $request->input('alasan'),
+            'keterangan'            => $request->input('keterangan'),
+            'kode_instansi'         => env('KODE_INSTANSI'),
+        ];
+
+        // 3. Kirim data menggunakan format JSON murni (Jangan gunakan ->attach() atau ->asMultipart())
+        $response = Http::withHeaders([
+                'Accept' => 'application/json',
+            ])
+            ->post(env('API_URL') . 'api/ppid/pengajuan_keberatan/ajaxKirimPengajuanKeberatan', $payload);
+
+        // 4. Ambil response dari server
+        $result = $response->json();
+
+        // 5. Kondisi pengalihan halaman setelah menerima respon server
+        if ($response->successful() && isset($result['success']) && $result['success'] == true) {
+            return redirect('ppid_pengajuan_keberatan')
+                ->with([
+                    'success' => 'Permohonan informasi Anda telah berhasil dikirim.',
+                    'kode_registrasi' => $result['kode_registrasi'] ?? $payload['kode_registrasi']
+                ]);
+        } else {
+            $pesanError = $result['message'] ?? 'Terjadi kesalahan pada server tujuan.';
+            return back()
+                ->withErrors(['error' => $pesanError])
+                ->withInput();
+        }
+    }
+
+
+    public function ppidCekPengajuanKeberatan(){
+        $data = $this->getNagariData();
+        return view('pages.ppid.ppid_cek_pengajuan_keberatan', [
+            'data'  => $data
+        ]);
+    }
+
+
+    public function ppidPengajuanKeberatanCheck(Request $request)
+    {
+        // 1. Validasi input terlebih dahulu di sisi client
+        $request->validate([
+            'kode_registrasi' => 'required|string',
+            'g-recaptcha-response' => 'required|string'
+        ], [
+            'kode_registrasi.required' => 'Kode registrasi wajib diisi.',
+            'g-recaptcha-response.required' => 'Verifikasi reCAPTCHA wajib diselesaikan.'
+        ]);
+
+        $captchaToken = $request->input('g-recaptcha-response');
+        $payload = [
+            '_token'            => $request->input('_token'),
+            'recaptcha_token'   => $captchaToken,
+            'kode_instansi'     => env('KODE_INSTANSI'),
+            'kode_registrasi'   => $request->input('kode_registrasi')
+        ];
+
+        try {
+            // 3. Kirim data menggunakan format JSON murni
+            $response = Http::withHeaders([
+                    'Accept' => 'application/json',
+                ])
+                ->post(env('API_URL') . 'api/ppid/pengajuan_keberatan/ajaxCheckPengajuanKeberatan', $payload);
+
+            // 4. Ambil response dari server
+            $result = $response->json();
+
+            // 5. Evaluasi status response API dari Server
+            if ($response->successful() && isset($result['success']) && $result['success'] === true) {
+                
+                // Konversi JSON response menjadi Object Standard (StdClass)
+                $dataKeberatan = new \stdClass();
+                $dataKeberatan->kode_registrasi = $request->input('kode_registrasi');
+                
+                // MEMBACA DATA ASLI/REAL HASIL RESPONSE SERVER BARU
+
+                $dataKeberatan->status          = $result['status'] ?? 'Menunggu Verifikasi'; 
+                $dataKeberatan->nama            = $result['nama'] ?? '-'; 
+                $dataKeberatan->kategori        = $result['kategori'] ?? '-';
+                $dataKeberatan->pekerjaan       = $result['pekerjaan'] ?? '-';
+                $dataKeberatan->alasan          = $result['alasan'] ?? '-';
+                $dataKeberatan->keterangan      = $result['keterangan'] ?? '-';
+                $dataKeberatan->tanggapan_admin = $result['catatan'] ?? 'Belum ada tanggapan resmi.';
+                $dataKeberatan->file            = $result['file'] ?? '';
+
+                // Perbaikan parsing tanggal menggunakan Carbon agar terhindar dari error format string database
+                if (!empty($result['created_at'])) {
+                    $dataKeberatan->created_at  = Carbon::parse($result['created_at'])->translatedFormat('d F Y');
+                } else {
+                    $dataKeberatan->created_at  = '-';
+                }
+
+                // Kembalikan ke view dengan membawa data object hasil API
+                $data = $this->getNagariData();
+                
+                // Sesuai nama file blade Anda yang digunakan di rute client: ppid_cek_pengajuan_keberatan
+                return view('pages.ppid.ppid_cek_pengajuan_keberatan', compact('dataKeberatan', 'data'));
+
+            } else {
+                // Jika server merespon false atau format tidak sesuai
+                $pesanError = $result['message'] ?? 'Kode registrasi tidak terdaftar atau tidak ditemukan di sistem server pusat.';
+                return redirect()->back()
+                                ->withInput()
+                                ->with('error', $pesanError);
+            }
+
+        } catch (\Exception $e) {
+            // Antisipasi jika API Server down / timeout
+            return redirect()->back()
+                            ->withInput()
+                            ->with('error', 'Gagal terhubung ke server data PPID. Silakan coba beberapa saat lagi.');
+        }
+    }
+
+
+
 
 
 

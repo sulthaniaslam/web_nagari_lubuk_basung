@@ -14,6 +14,9 @@ Route::get('/berita-detail/{slug}', [HomeController::class, 'beritaDetail']);
 Route::get('/pesona_wisata/{id}', [HomeController::class, 'pesonaWisata']);
 Route::get('/perangkat-nagari', [HomeController::class, 'perangkatNagari']);
 Route::get('/galeri', [HomeController::class, 'galeri']);
+Route::get('/produk_hukum', function(){
+    return view('coming_soon');
+});
 Route::get('rpjm', [HomeController::class, 'rpjm']);
 Route::get('durkp', [HomeController::class, 'durkp']);
 Route::get('lppn', [HomeController::class, 'lppn']);
@@ -32,6 +35,10 @@ Route::get('ppid_permohonan_informasi', [HomeController::class, 'ppidPermohonanI
 Route::post('ppid_permohonan_informasi/send', [HomeController::class, 'ppidPermohonanInformasiSend']);
 Route::get('ppid_cek_permohonan_informasi', [HomeController::class, 'ppidCekPermohonanInformasi']);
 Route::post('ppid_permohonan_informasi/check', [HomeController::class, 'ppidPermohonanInformasiCheck']);
+Route::get('ppid_pengajuan_keberatan', [HomeController::class, 'ppidPengajuanKeberatan']);
+Route::post('ppid_pengajuan_keberatan/send', [HomeController::class, 'ppidPengajuanKeberatanSend']);
+Route::get('ppid_cek_pengajuan_keberatan', [HomeController::class, 'ppidCekPengajuanKeberatan']);
+Route::post('ppid_pengajuan_keberatan/check', [HomeController::class, 'ppidPengajuanKeberatanCheck']);
 // ===================== End Menu PPID Nagari
 
 
@@ -45,3 +52,8 @@ Route::get('/pkk_pengurus', [HomeController::class, 'pkkPengurus']);
 
 
 
+
+
+Route::fallback(function () {
+    return response()->view('notfound', [], 404);
+});

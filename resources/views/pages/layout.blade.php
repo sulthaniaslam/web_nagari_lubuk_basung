@@ -50,10 +50,11 @@
 
     <style>
       /* --- Gaya Widget Aksesibilitas --- */
+      /* --- Gaya Widget Aksesibilitas di Sebelah Kiri --- */
       .accessibility-toggle {
           position: fixed;
           bottom: 20px;
-          right: 20px;
+          left: 20px; /* Diubah dari right ke left */
           background: #0056b3;
           color: white;
           border: none;
@@ -65,10 +66,11 @@
           box-shadow: 0 4px 10px rgba(0,0,0,0.3);
           z-index: 9999;
       }
+
       .accessibility-panel {
           position: fixed;
           bottom: 90px;
-          right: 20px;
+          left: 20px; /* Diubah dari right ke left */
           background: white;
           border: 2px solid #ccc;
           border-radius: 8px;
@@ -79,6 +81,7 @@
           z-index: 9999;
           color: #333 !important;
       }
+
       .accessibility-panel.active {
           display: block;
       }
@@ -186,12 +189,13 @@
                 <li><a class="dropdown-item-pro" href="{{ url('struktur_nagari') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-sitemap text-green"></i></span> Struktur Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('galeri') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-image text-green"></i></span> Galeri</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('berita') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-edit text-gold"></i></span> Berita</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('produk_hukum') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-book text-primary"></i></span> Produk Hukum</a></li>
               </ul>
             </li>
 
             <li class="nav-item dropdown custom-dropdown">
               <a class="nav-link-pro dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Informasi Publik
+                Perencanaan
               </a>
               <ul class="dropdown-menu dropdown-glass-card animate__animated animate__fadeInUp">
                 <li><a class="dropdown-item-pro" href="{{ url('rpjm') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> RPJM</a></li>
@@ -209,9 +213,11 @@
               </a>
               <ul class="dropdown-menu dropdown-glass-card animate__animated animate__fadeInUp">
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_nagari') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-user text-crimson"></i></span> Profil PPID Nagari</a></li>
-                <li><a class="dropdown-item-pro" href="{{ url('ppid_informasi_publik') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> Informasi Publik</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('ppid_informasi_publik') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> Perencanaan</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-gold"><i class="fa-solid fa-file-signature text-gold"></i></span> Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_cek_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-magnifying-glass text-green"></i></span> Cek Permohonan Informasi</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('ppid_pengajuan_keberatan') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-warning text-danger"></i></span> Pengajuan Keberatan</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('ppid_cek_pengajuan_keberatan') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-magnifying-glass text-green"></i></span> Cek Pengajuan Keberatan</a></li>
               </ul>
             </li>
 
@@ -273,7 +279,7 @@
               <ul class="list-unstyled footer-links-list">
                 <li><a href="{{ url('/') }}"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Home</a></li>
                 <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Info Nagari</a></li>
-                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Informasi Publik</a></li>
+                <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>Perencanaan</a></li>
                 <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>PPID Nagari</a></li>
                 <li><a href="#"><i class="fa-solid fa-chevron-right me-2 small-arrow"></i>PKK Nagari</a></li>
               </ul>
