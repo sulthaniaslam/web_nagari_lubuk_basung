@@ -97,6 +97,11 @@ class HomeController extends Controller
         $data = $this->getNagariData();
         return view('pages.perangkat_nagari', ['data' => $data]);
     }
+
+    public function produkHukum(){
+        $data = $this->getNagariData();
+        return view('pages.produk_hukum', ['data' => $data]);
+    }
     
     public function galeri()
     {

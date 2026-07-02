@@ -106,10 +106,10 @@
                   <h4 class="fw-bold text-darkblue font-jakarta mb-0">{{ $dataKeberatan->kode_registrasi }}</h4>
                 </div>
                 <div class="mt-2 mt-sm-0">
-                  @if($dataKeberatan->status == 0)
-                    <span class="badge bg-warning-subtle text-warning border border-warning px-4 py-2 rounded-pill fw-bold font-jakarta"><i class="fa-solid fa-spinner fa-spin me-2"></i> Sedang Diproses</span>
-                  @elseif($dataKeberatan->status == 1)
+                  @if($dataKeberatan->status == 'Selesai')
                     <span class="badge bg-success-subtle text-success border border-success px-4 py-2 rounded-pill fw-bold font-jakarta"><i class="fa-solid fa-circle-check me-2"></i> Selesai Ditindaklanjuti</span>
+                  @elseif($dataKeberatan->status == '0')
+                    <span class="badge bg-warning-subtle text-warning border border-warning px-4 py-2 rounded-pill fw-bold font-jakarta"><i class="fa-solid fa-spinner fa-spin me-2"></i> Sedang Diproses</span>
                   @else
                     <span class="badge bg-secondary-subtle text-secondary border border-secondary px-4 py-2 rounded-pill fw-bold font-jakarta"><i class="fa-solid fa-hourglass-start me-2"></i> Menunggu Verifikasi</span>
                   @endif
@@ -128,7 +128,9 @@
 
               <div class="col-md-6">
                 <span class="text-muted d-block font-12 mb-1">TANGGAL PENGAJUAN</span>
-                <p class="fw-semibold text-darkblue font-jakarta mb-0">{{ \Carbon\Carbon::parse($dataKeberatan->created_at)->translatedFormat('d F Y') }}</p>
+                <p class="fw-semibold text-darkblue font-jakarta mb-0">
+                  {{ is_numeric($dataKeberatan->created_at) ? \Carbon\Carbon::parse($dataKeberatan->created_at)->translatedFormat('d F Y') : $dataKeberatan->created_at }}
+                </p>
               </div>
 
               <div class="col-md-6">
@@ -142,11 +144,31 @@
                 <div class="p-3 bg-light rounded-4 font-jakarta text-secondary-custom fs-6" style="white-space: pre-line; line-height: 1.6;">{{ $dataKeberatan->keterangan }}</div>
               </div>
 
-              @if($dataKeberatan->tanggapan_admin)
+              {{-- BLOK DIBAWAH INI AKAN MUNCUL JIKA STATUS == 'Selesai' --}}
+              @if($dataKeberatan->status == 'Selesai')
               <div class="col-12 mt-4">
-                <div class="card border-0 rounded-4 p-4" style="background-color: #f0f4f8; border-left: 5px solid #0f172a !important;">
-                  <h6 class="fw-bold text-darkblue font-jakarta mb-2"><i class="fa-solid fa-reply-all me-2"></i> Catatan Tanggapan / Jawaban PPID:</h6>
-                  <p class="mb-0 font-jakarta small opacity-90 text-secondary-custom" style="white-space: pre-line; line-height: 1.6;">{{ $dataKeberatan->tanggapan_admin }}</p>
+                <div class="card border-0 rounded-4 p-4 shadow-sm" style="background-color: #f0fdf4; border-left: 5px solid #16a34a !important;">
+                  <h6 class="fw-bold text-success font-jakarta mb-3">
+                    <i class="fa-solid fa-comment-dots me-2"></i> Jawaban / Tanggapan PPID:
+                  </h6>
+                  <p class="mb-4 font-jakarta text-darkblue opacity-90" style="white-space: pre-line; line-height: 1.6;">
+                    {{ $dataKeberatan->tanggapan_admin ?? 'Tidak ada pesan jawaban tertulis.' }}
+                  </p>
+                  
+                  @if($dataKeberatan->file)
+                  <div class="d-flex align-items-center justify-content-between p-3 bg-white rounded-3 border">
+                    <div class="d-flex align-items-center">
+                      <i class="fa-solid fa-file-invoice fa-2x text-success me-3"></i>
+                      <div>
+                        <span class="d-block small text-muted font-12">DOKUMEN LAMPIRAN JAWABAN</span>
+                        <span class="fw-semibold font-jakarta text-darkblue small">Unduh berkas tanggapan resmi</span>
+                      </div>
+                    </div>
+                    <a href="{{ $dataKeberatan->file }}" class="btn btn-success btn-sm rounded-pill px-3 fw-bold font-jakarta" download target="_blank">
+                      <i class="fa-solid fa-cloud-arrow-down me-1"></i> Download File
+                    </a>
+                  </div>
+                  @endif
                 </div>
               </div>
               @endif
@@ -166,12 +188,11 @@
 <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
 <script>
   document.getElementById('formCekKeberatan').addEventListener("submit", function(e) {
-    e.preventDefault(); // Menahan submit form sesaat
+    e.preventDefault(); 
     
     grecaptcha.ready(function() {
       grecaptcha.execute("{{ env('RECAPTCHA_SITE_KEY') }}", { action: 'cek_status_keberatan' })
       .then(function(token) {
-        // Ambil token reCAPTCHA dan sematkan ke input hidden sebelum submit dikirim
         document.getElementById('g-recaptcha-response').value = token;
         document.getElementById('formCekKeberatan').submit();
       });
@@ -199,12 +220,10 @@
     -webkit-text-fill-color: transparent;
   }
 
-  /* Hero Section */
   .ppid-hero-epic { min-height: 320px; padding: 50px 0; background-color: #ffffff; }
   .epic-subtitle { color: #475569; font-size: 1.1rem; line-height: 1.7; }
   .section-mini-tag { font-size: 0.725rem; }
 
-  /* Kapsul Kaca Breadcrumb */
   .custom-kapsul-glass {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
@@ -213,7 +232,6 @@
   .custom-kapsul-glass a { color: #64748b; text-decoration: none; font-weight: 600; font-size: 0.825rem; }
   .custom-kapsul-glass .active { color: #0f172a; font-weight: 700; font-size: 0.825rem; }
 
-  /* Orbs Ambient */
   .glow-orb-1 {
     position: absolute; top: -150px; left: -100px; width: 500px; height: 500px;
     background: radial-gradient(circle, rgba(220,38,38,0.04) 0%, rgba(255,255,255,0) 70%);
@@ -225,7 +243,6 @@
     filter: blur(60px); border-radius: 50%; pointer-events: none;
   }
 
-  /* Input Premium Styling */
   .form-label-custom {
     font-size: 0.875rem;
     margin-bottom: 8px;
@@ -247,7 +264,6 @@
     color: #0f172a;
   }
 
-  /* Submit Button Premium */
   .btn-submit-premium {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: #ffffff;
@@ -263,14 +279,12 @@
     color: #ffffff;
   }
 
-  /* Pattern Background Mesh */
   .decorative-grid-pattern {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
     background-size: 24px 24px; opacity: 0.3; pointer-events: none; z-index: 1;
   }
 
-  /* Custom Badges */
   .bg-warning-subtle { background-color: #fffbeb !important; }
   .bg-success-subtle { background-color: #f0fdf4 !important; }
   .bg-secondary-subtle { background-color: #f1f5f9 !important; }

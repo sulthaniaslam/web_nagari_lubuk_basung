@@ -14,9 +14,7 @@ Route::get('/berita-detail/{slug}', [HomeController::class, 'beritaDetail']);
 Route::get('/pesona_wisata/{id}', [HomeController::class, 'pesonaWisata']);
 Route::get('/perangkat-nagari', [HomeController::class, 'perangkatNagari']);
 Route::get('/galeri', [HomeController::class, 'galeri']);
-Route::get('/produk_hukum', function(){
-    return view('coming_soon');
-});
+Route::get('/produk_hukum', [HomeController::class, 'produkHukum']);
 Route::get('rpjm', [HomeController::class, 'rpjm']);
 Route::get('durkp', [HomeController::class, 'durkp']);
 Route::get('lppn', [HomeController::class, 'lppn']);

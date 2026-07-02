@@ -186,10 +186,10 @@
               <ul class="dropdown-menu dropdown-glass-card animate__animated animate__fadeInUp">
                 <li><a class="dropdown-item-pro" href="{{ url('visimisi') }}"><span class="drop-icon-bg bg-rgba-crimson"><i class="fa-solid fa-bullseye text-crimson"></i></span> Visi Misi Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('perangkat-nagari') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-users text-primary"></i></span> Perangkat Nagari</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('produk_hukum') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-book text-primary"></i></span> Produk Hukum</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('struktur_nagari') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-sitemap text-green"></i></span> Struktur Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('galeri') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-image text-green"></i></span> Galeri</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('berita') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-edit text-gold"></i></span> Berita</a></li>
-                <li><a class="dropdown-item-pro" href="{{ url('produk_hukum') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-book text-primary"></i></span> Produk Hukum</a></li>
               </ul>
             </li>
 
