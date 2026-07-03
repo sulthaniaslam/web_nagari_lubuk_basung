@@ -292,7 +292,7 @@
                 <div>
                   <div class="pro-card-meta mb-2 small text-muted">
                     <span class="text-gold me-3"><i class="fa-regular fa-calendar-days me-1"></i> {{ \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d F Y') }}</span>
-                    <span><i class="fa-regular fa-clock me-1"></i> 5 mnt baca</span>
+                    {{-- <span><i class="fa-regular fa-clock me-1"></i> 5 mnt baca</span> --}}
                   </div>
                   <h4 class="fw-bold text-darkblue mb-3"><a href="{{ url('berita-detail/'.$item['slug']) }}" class="text-decoration-none text-darkblue hover-link">{{ $item['judul_berita'] }}</a></h4>
                   <p class="text-secondary mb-4">{!! Str::substr(strip_tags($item['isi_berita']), 0, 180) !!}...</p>
@@ -334,7 +334,8 @@
                 <div class="mb-1">
                   <span class="badge {{ $currentTheme['badge'] }} px-2 py-1 small-badge mb-1">{{ $currentTheme['text'] }}</span>
                   <small class="text-muted d-block ms-1" style="font-size: 0.75rem;">
-                    <i class="fa-regular fa-calendar me-1"></i> {{ \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d M Y') }}
+                    <i class="fa-regular fa-calendar me-1"></i> 
+                    {{ \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d M Y') }}
                   </small>
                 </div>
                 <h6 class="fw-bold mb-1 side-card-title">

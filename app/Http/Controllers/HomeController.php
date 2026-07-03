@@ -102,6 +102,11 @@ class HomeController extends Controller
         $data = $this->getNagariData();
         return view('pages.produk_hukum', ['data' => $data]);
     }
+
+    public function maklumatPelayanan(){
+        $data = $this->getNagariData();
+        return view('pages.maklumat_pelayanan', ['data' => $data]);
+    }
     
     public function galeri()
     {
@@ -193,7 +198,7 @@ class HomeController extends Controller
             // ATTACH FILE FOTO ASLI
             ->attach(
                 'foto', 
-                file_get_contents($fileFoto->getRealPath()), 
+                file_get_contents($fileFoto->getRealPath(), 'r'), 
                 $fileFoto->getClientOriginalName()
             )
             ->post(env('API_URL') . 'api/ppid/permohonan_informasi/ajaxBuatPermohonanInformasi'); 

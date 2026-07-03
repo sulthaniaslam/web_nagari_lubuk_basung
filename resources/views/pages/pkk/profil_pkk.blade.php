@@ -216,7 +216,7 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-5 text-center">
                         <div class="sambutan-frame d-inline-block animate__animated animate__fadeInLeft">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=460&h=520&q=80" alt="Ketua TP-PKK" class="img-fluid" style="width: 100%; max-width: 340px; height: 380px; object-fit: cover;">
+                            <img src="{{ env('API_STORAGE') . $data['pkk']['sambutan_pkk'][0]['foto'] }}" alt="Ketua TP-PKK" class="img-fluid" style="width: 100%; max-width: 340px; height: 380px; object-fit: cover;">
                         </div>
                     </div>
                     <div class="col-lg-7">

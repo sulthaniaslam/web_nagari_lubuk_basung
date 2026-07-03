@@ -187,6 +187,7 @@
                 <li><a class="dropdown-item-pro" href="{{ url('visimisi') }}"><span class="drop-icon-bg bg-rgba-crimson"><i class="fa-solid fa-bullseye text-crimson"></i></span> Visi Misi Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('perangkat-nagari') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-users text-primary"></i></span> Perangkat Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('produk_hukum') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-book text-primary"></i></span> Produk Hukum</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('maklumat_pelayanan') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-info text-success"></i></span> Maklumat Pelayanan</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('struktur_nagari') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-sitemap text-green"></i></span> Struktur Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('galeri') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-image text-green"></i></span> Galeri</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('berita') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-edit text-gold"></i></span> Berita</a></li>
@@ -213,7 +214,7 @@
               </a>
               <ul class="dropdown-menu dropdown-glass-card animate__animated animate__fadeInUp">
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_nagari') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-user text-crimson"></i></span> Profil PPID Nagari</a></li>
-                <li><a class="dropdown-item-pro" href="{{ url('ppid_informasi_publik') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> Perencanaan</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('ppid_informasi_publik') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> Daftar Informasi Publik</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-gold"><i class="fa-solid fa-file-signature text-gold"></i></span> Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_cek_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-magnifying-glass text-green"></i></span> Cek Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_pengajuan_keberatan') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-warning text-danger"></i></span> Pengajuan Keberatan</a></li>

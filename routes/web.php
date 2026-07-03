@@ -15,6 +15,7 @@ Route::get('/pesona_wisata/{id}', [HomeController::class, 'pesonaWisata']);
 Route::get('/perangkat-nagari', [HomeController::class, 'perangkatNagari']);
 Route::get('/galeri', [HomeController::class, 'galeri']);
 Route::get('/produk_hukum', [HomeController::class, 'produkHukum']);
+Route::get('/maklumat_pelayanan', [HomeController::class, 'maklumatPelayanan']);
 Route::get('rpjm', [HomeController::class, 'rpjm']);
 Route::get('durkp', [HomeController::class, 'durkp']);
 Route::get('lppn', [HomeController::class, 'lppn']);
