@@ -152,6 +152,62 @@
           background-color: yellow !important;
           color: black !important;
       }
+
+
+      /* Container Utama */
+      .footer-social-group {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      /* Gaya Dasar Tombol Sosial Media */
+      .social-glow-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        color: #64748b; /* Warna abu-abu dasar */
+        font-size: 1.15rem;
+        text-decoration: none;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+
+      /* Efek Hover Secara Umum */
+      .social-glow-btn:hover {
+        transform: translateY(-4px);
+        color: #ffffff !important;
+      }
+
+      /* Warna & Efek Cahaya Spesifik per Media Sosial */
+      .fb-glow:hover {
+        background-color: #1877f2;
+        box-shadow: 0 10px 15px -3px rgba(24, 119, 242, 0.4), 0 4px 6px -4px rgba(24, 119, 242, 0.4);
+      }
+
+      .ig-glow:hover {
+        background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+        box-shadow: 0 10px 15px -3px rgba(238, 42, 123, 0.4), 0 4px 6px -4px rgba(238, 42, 123, 0.4);
+      }
+
+      .tt-glow:hover {
+        background-color: #000000;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+      }
+
+      .yt-glow:hover {
+        background-color: #ff0000;
+        box-shadow: 0 10px 15px -3px rgba(255, 0, 0, 0.4), 0 4px 6px -4px rgba(255, 0, 0, 0.4);
+      }
+
+      .default-glow:hover {
+        background-color: #4f46e5;
+        box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+      }
     </style>
 
   </head>
@@ -215,6 +271,7 @@
               <ul class="dropdown-menu dropdown-glass-card animate__animated animate__fadeInUp">
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_nagari') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-user text-crimson"></i></span> Profil PPID Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_informasi_publik') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> Daftar Informasi Publik</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('ppid_alur_pelayanan') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-route text-success"></i></span> Alur Pelayanan</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-gold"><i class="fa-solid fa-file-signature text-gold"></i></span> Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_cek_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-magnifying-glass text-green"></i></span> Cek Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_pengajuan_keberatan') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-warning text-danger"></i></span> Pengajuan Keberatan</a></li>
@@ -267,11 +324,35 @@
               <p class="footer-description mt-3">
                 Sistem Informasi Terpadu Pelayanan Publik dan Keterbukaan Informasi Pemerintahan Nagari berbasis Smart Village. Mewujudkan tata kelola desa yang transparan dan inklusif.
               </p>
-              <div class="footer-social-group mt-4">
-                <a href="#" class="social-glow-btn fb-glow" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-glow-btn ig-glow" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="social-glow-btn yt-glow" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" class="social-glow-btn x-glow" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <div class="footer-social-group mt-4 d-flex gap-3 align-items-center">
+                @foreach ($data['mediaSosial'] as $item)
+                  @php
+                    // Mengubah nama medsos menjadi huruf kecil semua agar pengecekan lebih akurat
+                    $medsos = strtolower($item['nama_medsos']);
+                  @endphp
+              
+                  @if ($medsos == 'facebook')
+                    <a href="{{ $item['link_medsos'] }}" target="_blank" class="social-glow-btn fb-glow" aria-label="Facebook">
+                      <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                  @elseif ($medsos == 'instagram')
+                    <a href="{{ $item['link_medsos'] }}" target="_blank" class="social-glow-btn ig-glow" aria-label="Instagram">
+                      <i class="fa-brands fa-instagram"></i>
+                    </a>
+                  @elseif ($medsos == 'tiktok')
+                    <a href="{{ $item['link_medsos'] }}" target="_blank" class="social-glow-btn tt-glow" aria-label="Tiktok">
+                      <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                  @elseif ($medsos == 'youtube')
+                    <a href="{{ $item['link_medsos'] }}" target="_blank" class="social-glow-btn yt-glow" aria-label="Youtube">
+                      <i class="fa-brands fa-youtube"></i>
+                    </a>
+                  @else
+                    <a href="{{ $item['link_medsos'] }}" target="_blank" class="social-glow-btn default-glow" aria-label="{{ $item['nama_medsos'] }}">
+                      <i class="fa-solid fa-link"></i>
+                    </a>
+                  @endif
+                @endforeach
               </div>
             </div>
   

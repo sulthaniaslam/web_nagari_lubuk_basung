@@ -38,6 +38,7 @@ Route::get('ppid_pengajuan_keberatan', [HomeController::class, 'ppidPengajuanKeb
 Route::post('ppid_pengajuan_keberatan/send', [HomeController::class, 'ppidPengajuanKeberatanSend']);
 Route::get('ppid_cek_pengajuan_keberatan', [HomeController::class, 'ppidCekPengajuanKeberatan']);
 Route::post('ppid_pengajuan_keberatan/check', [HomeController::class, 'ppidPengajuanKeberatanCheck']);
+Route::get('ppid_alur_pelayanan', [HomeController::class, 'ppidAlurPelayanan']);
 // ===================== End Menu PPID Nagari
 
 

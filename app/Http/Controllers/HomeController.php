@@ -399,6 +399,18 @@ class HomeController extends Controller
     }
 
 
+    public function ppidAlurPelayanan(){
+        $data = $this->getNagariData();
+        return view('pages.ppid.ppid_alur_pelayanan', [
+            'data'  => $data
+        ]);
+    }
+
+
+
+
+
+
 
 
 
