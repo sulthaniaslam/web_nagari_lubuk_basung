@@ -8,7 +8,8 @@
     </script>
 @endif
 
-<section class="hero-section" style="background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
+<section class="hero-section" style="
+background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
   <div class="hero-overlay"></div>
   
   <div class="container position-relative" style="z-index: 2;">
