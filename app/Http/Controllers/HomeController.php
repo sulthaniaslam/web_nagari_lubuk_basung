@@ -199,6 +199,11 @@ class HomeController extends Controller
         $data = $this->getNagariData();
         return view('pages.ppid.ppid_profil', ['data' => $data]);
     }
+    
+    public function ppidRegulasi(){    
+        $data = $this->getNagariData();
+        return view('pages.ppid.ppid_regulasi', ['data' => $data]);
+    }
 
     public function ppidInformasiPublik(){
         $data = $this->getNagariData();

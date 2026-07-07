@@ -164,7 +164,7 @@
         <div class="position-relative" style="z-index: 2;">
           
           <div class="mb-5">
-            <span class="badge-premium-pill mb-2"><i class="fa-solid fa-sitemap me-2 text-crimson"></i>Alur Komando</span>
+            <span class="badge-premium-pill mb-2"><i class="fa-solid fa-sitemap me-2 text-crimson"></i>Struktur</span>
             <h3 class="fw-black text-darkblue font-jakarta tracking-tight-epic">Struktur Organisasi PPID</h3>
             <div class="ppid-editorial-text text-muted font-jakarta max-w-2xl mx-auto mt-2">
               {!! $ppid['struktur_ppid'] !!}
@@ -197,6 +197,44 @@
         <p class="text-secondary font-jakarta small mb-0">Berkas atau informasi PPID belum diunggah oleh administrator.</p>
       </div>
     @endif
+  </div>
+
+  <div class="container pt-2 mt-4">
+    <div class="card border-0 pt-2 mt-4 shadow-lg rounded-5 bg-white p-4 p-md-5 text-center animate__animated animate__fadeInUp position-relative overflow-hidden">
+      <div class="decorative-grid-pattern"></div>
+      <div class="position-relative" style="z-index: 2;">
+        
+        <div class="mb-5">
+          <h3 class="fw-black text-darkblue font-jakarta tracking-tight-epic">Jadwal & Biaya</h3>
+          <div class="ppid-editorial-text text-muted font-jakarta max-w-2xl mx-auto mt-2">
+            {!! $data['ppid_pelayanan_publik'][0]['jadwal_biaya']   !!}
+          </div>
+        </div>
+        
+        <div class="mx-auto position-relative matrix-structure-box rounded-5 p-3 bg-light border" style="max-width: 960px;">
+          @php
+            $fileUrl = env('API_STORAGE') . $data['ppid_pelayanan_publik'][0]['file_jadwal_biaya'];
+            $isPdf = Str::endsWith(strtolower($fileUrl), '.pdf');
+          @endphp
+        
+          @if($isPdf)
+            <!-- Tampilan jika file berupa PDF -->
+            <iframe src="{{ $fileUrl }}" 
+                    class="w-100 rounded-4 shadow-sm bg-white final-image-render" 
+                    style="height: 550px; border: none;">
+            </iframe>
+          @else
+            <!-- Tampilan jika file berupa Gambar -->
+            <img src="{{ $fileUrl }}" 
+                 alt="Jadwal dan Biaya Pelayanan" 
+                 class="w-100 h-100 object-fit-contain final-image-render rounded-4 shadow-sm bg-white"
+                 onerror="this.onerror=null; this.src='https://placehold.co/950x550/f8fafc/334155?text=Jadwal+Biaya';">
+          @endif
+          
+        </div>
+
+      </div>
+    </div>
   </div>
 
 </main>
