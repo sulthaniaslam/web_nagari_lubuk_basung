@@ -151,6 +151,45 @@ class HomeController extends Controller
         return view('pages.lpj', ['data' => $data]);
     }
 
+    public function kritikSaran(Request $request){
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'pesan' => 'required|string', // Sesuai dengan name="pesan" di Blade[cite: 1]
+            'g-recaptcha-response' => 'required',
+        ]);
+    
+        $token = $request->input('g-recaptcha-response');
+    
+        // Mengirimkan data ke Server API Anda
+        // Tambahkan .withoutVerifying() sebelum .asForm()
+        $response = Http::withoutVerifying()->asForm()->post('https://rangkiang.agamkab.go.id/api/kritik_saran/ajaxSendKritikSaran', [
+            'kode_instansi'   => $request->kode_instansi,
+            'nama'            => $request->nama,
+            'email'           => $request->email,
+            'kritik_saran'    => $request->pesan,
+            'recaptcha_token' => $token
+        ]);
+    
+        $responseBody = $response->json();
+    
+        // 1. Cek jika API Server gagal dihubungi total / mati
+        if (is_null($responseBody)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('message', 'Gagal terhubung ke server pusat.');
+        }
+    
+        // 2. Cek response 'success' yang dikirim oleh Server API Anda
+        if (isset($responseBody['success']) && $responseBody['success'] === false) {
+            return redirect()->back()
+                ->withInput()
+                ->with('message', $responseBody['message'] ?? 'Gagal mengirim pesan.');
+        }
+    
+        // Jika sukses, kembali dengan alert message ke Blade[cite: 1]
+        return redirect()->back()->with('message', 'Kritik / Saran Anda berhasil dikirim dan akan segera ditinjau, Terima Kasih');
+    }
 
 
 

@@ -7,24 +7,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 // ===================== Menu Nagari
-Route::get('/visimisi', [HomeController::class, 'visimisi']);
-Route::get('/struktur_nagari', [HomeController::class, 'strukturNagari']);
-Route::get('/berita', [HomeController::class, 'berita']);
-Route::get('/berita-detail/{slug}', [HomeController::class, 'beritaDetail']);
-Route::get('/pesona_wisata/{id}', [HomeController::class, 'pesonaWisata']);
-Route::get('/perangkat-nagari', [HomeController::class, 'perangkatNagari']);
-Route::get('/galeri', [HomeController::class, 'galeri']);
-Route::get('/produk_hukum', [HomeController::class, 'produkHukum']);
-Route::get('/maklumat_pelayanan', [HomeController::class, 'maklumatPelayanan']);
+Route::get('visimisi', [HomeController::class, 'visimisi']);
+Route::get('struktur_nagari', [HomeController::class, 'strukturNagari']);
+Route::get('berita', [HomeController::class, 'berita']);
+Route::get('berita-detail/{slug}', [HomeController::class, 'beritaDetail']);
+Route::get('pesona_wisata/{id}', [HomeController::class, 'pesonaWisata']);
+Route::get('perangkat-nagari', [HomeController::class, 'perangkatNagari']);
+Route::get('galeri', [HomeController::class, 'galeri']);
+Route::get('produk_hukum', [HomeController::class, 'produkHukum']);
+Route::get('maklumat_pelayanan', [HomeController::class, 'maklumatPelayanan']);
 Route::get('rpjm', [HomeController::class, 'rpjm']);
 Route::get('durkp', [HomeController::class, 'durkp']);
 Route::get('lppn', [HomeController::class, 'lppn']);
 Route::get('apbn', [HomeController::class, 'apbn']);
 Route::get('lkppn', [HomeController::class, 'lkppn']);
 Route::get('lpj', [HomeController::class, 'lpj']);
-Route::post('aspirasi', function (){
-    return redirect('/')->with('message', 'Mohon maaf 🙏 fitur ini masih dalam pengembangan');
-});
+Route::post('kritik_saran', [HomeController::class, 'kritikSaran']);
 // ===================== End Menu Nagari
 
 // ===================== Menu PPID Nagari

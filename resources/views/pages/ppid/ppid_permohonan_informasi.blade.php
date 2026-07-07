@@ -283,7 +283,7 @@
                                 <label for="tujuan" class="form-label small fw-bold text-secondary">Subjek Utama / Tujuan Pengajuan</label>
                                 <div class="input-group-custom">
                                     <i class="fa-solid fa-circle-info form-icon"></i>
-                                    <input type="text" class="form-control @error('tujuan') is-invalid @enderror" id="tujuan" name="tujuan" value="{{ old('tujuan') }}" placeholder="Contoh: Permohonan Data Anggaran / Proposal Riset Akademik" required>
+                                    <input type="text" class="form-control @error('tujuan') is-invalid @enderror" id="tujuan" name="tujuan" value="{{ old('tujuan') }}" placeholder="Contoh: Proposal Riset Akademik, Bahan rilis media, Alat Bukti" required>
                                     @error('tujuan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>

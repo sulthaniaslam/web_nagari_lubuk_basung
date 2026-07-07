@@ -410,7 +410,7 @@
           
           <div class="row align-items-center justify-content-between mt-4">
             <div class="col-md-6 text-center text-md-start">
-              <p class="mb-0 footer-copyright">&copy; 2026 Pemerintah Nagari Digital. Seluruh Hak Cipta Dilindungi.</p>
+              <p class="mb-0 footer-copyright">&copy; 2026 Diskominfo Kabupaten Agam.</p>
             </div>
             <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
               <ul class="list-inline mb-0 footer-bottom-links">

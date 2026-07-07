@@ -69,14 +69,16 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
               <h4 class="fw-bold text-darkblue mb-2">Sistem Informasi Terpadu</h4>
               <p class="text-muted small px-3">Menghubungkan masyarakat dengan pemerintah nagari secara real-time, cepat, dan akuntabel.</p>
               
-              <div class="mini-widget-glass animate__animated animate__fadeInUp animate__delay-1s">
-                <i class="fa-solid fa-circle-check text-green me-2"></i> 
-                <span class="small fw-semibold text-dark-text">PPID Dokumen Terverifikasi</span>
-              </div>
+              <a href="{{ url('ppid_informasi_publik') }}" style="text-decoration: none;">
+                <div class="mini-widget-glass animate__animated animate__fadeInUp animate__delay-1s">
+                  <i class="fa-solid fa-circle-check text-green me-2"></i>
+                  <span class="small fw-semibold text-dark-text">PPID Dokumen Terverifikasi</span>
+                </div>
+              </a>
             </div>
           </div>
 
-          <div class="side-widget-glass floating-element-reverse">
+          {{-- <div class="side-widget-glass floating-element-reverse">
             <div class="d-flex align-items-center">
               <div class="pkk-mini-icon me-3">
                 <i class="fa-solid fa-heart-pulse text-crimson"></i>
@@ -86,7 +88,7 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
                 <small class="text-gold fw-bold" style="font-size: 0.75rem;">Program Stunting Mandiri</small>
               </div>
             </div>
-          </div>
+          </div> --}}
 
         </div>
       </div>
@@ -190,66 +192,9 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
                 </div>
               </div>
             </div>
-            {{-- <div class="col-sm-4 col-12 mt-sm-0 mt-2">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fa-award fa-lg text-green me-2"></i>
-                <div>
-                  <small class="text-muted d-block lh-1">Status Desa</small>
-                  <span class="fw-bold text-dark-text text-nowrap">Mandiri (IDM)</span>
-                </div>
-              </div>
-            </div> --}}
           </div>
         </div>
       </div>
-
-      {{-- <div class="col-12 animate__animated animate__fadeInUp">
-        <div class="bento-card bento-vision-mission-card p-4 p-md-5">
-          <div class="row g-5">
-            <div class="col-lg-4 border-end-lg text-center text-lg-start d-flex flex-column justify-content-center">
-              <div class="vision-icon-globe mb-3 mx-auto mx-lg-0">
-                <i class="fa-solid fa-eye text-green"></i>
-              </div>
-              <span class="text-uppercase fw-bold text-green tracking-wider small mb-2 d-block">Visi Strategis</span>
-              <h4 class="bento-vision-quote mb-3">
-                "{{ $data['ppid_profile']['visi_ppid'] }}"
-              </h4>
-              <p class="text-muted small pe-lg-3 mb-0">
-                Manifesto jangka panjang yang menyelaraskan adat Minangkabau dengan integrasi sistem digital modern.
-              </p>
-            </div>
-            
-            <div class="col-lg-8">
-              <div class="bento-badge-top bg-rgba-blue text-primary mb-3">
-                <i class="fa-solid fa-chart-line me-1"></i> Misi Utama (Aksi Nyata)
-              </div>
-              <div class="row g-3">
-                <div class="col-md-4">
-                  <div class="mission-item-box">
-                    <div class="mission-number text-rgba-blue">01</div>
-                    <h6 class="fw-bold text-dark-text mb-2">Pelayanan Digital</h6>
-                    <p class="text-muted small mb-0">Efisiensi dan kecepatan pelayanan administrasi publik berbasis aplikasi internal mandiri.</p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="mission-item-box">
-                    <div class="mission-number text-rgba-crimson">02</div>
-                    <h6 class="fw-bold text-dark-text mb-2">Kearifan Lokal</h6>
-                    <p class="text-muted small mb-0">Melestarikan nilai adat leluhur, kesenian, serta norma hukum keagamaan nagari.</p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="mission-item-box">
-                    <div class="mission-number text-rgba-gold">03</div>
-                    <h6 class="fw-bold text-dark-text mb-2">Ekonomi Berdaya</h6>
-                    <p class="text-muted small mb-0">Optimalisasi badan usaha BUMDes dan UMKM untuk memperkuat ketahanan pasar lokal.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> --}}
 
     </div>
   </div>
@@ -272,7 +217,6 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
     </div>
 
     <div class="row g-4">
-      {{-- Ambil 4 berita terbaru untuk menyusun Bento Layout --}}
       @php $beritaList = collect($data['berita'])->take(4); @endphp
 
       @foreach ($beritaList as $item)
@@ -293,7 +237,6 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
                 <div>
                   <div class="pro-card-meta mb-2 small text-muted">
                     <span class="text-gold me-3"><i class="fa-regular fa-calendar-days me-1"></i> {{ \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d F Y') }}</span>
-                    {{-- <span><i class="fa-regular fa-clock me-1"></i> 5 mnt baca</span> --}}
                   </div>
                   <h4 class="fw-bold text-darkblue mb-3"><a href="{{ url('berita-detail/'.$item['slug']) }}" class="text-decoration-none text-darkblue hover-link">{{ $item['judul_berita'] }}</a></h4>
                   <p class="text-secondary mb-4">{!! Str::substr(strip_tags($item['isi_berita']), 0, 180) !!}...</p>
@@ -305,11 +248,9 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
             </div>
           </div>
           
-          {{-- Pembuka Kolom Kanan untuk List Berita Pendukung --}}
           <div class="col-lg-5 d-flex flex-column gap-4">
         @else
           @php
-            // Menentukan variasi warna badge dan ikon berdasarkan indeks data agar bervariasi
             $themes = [
               2 => ['badge' => 'badge-green', 'text' => 'Kegiatan', 'bg_icon' => 'bg-rgba-green', 'icon' => 'fa-hands-holding-child', 'text_color' => 'text-green'],
               3 => ['badge' => 'badge-crimson', 'text' => 'PPID', 'bg_icon' => 'bg-rgba-crimson', 'icon' => 'fa-circle-info', 'text_color' => 'text-crimson'],
@@ -349,7 +290,6 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
           </div>
         @endif
 
-        {{-- Penutup otomatis tag kolom kanan di akhir iterasi loop --}}
         @if($loop->last && $loop->count > 1)
           </div>
         @endif
@@ -380,14 +320,11 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
 
     <div class="row g-4 spec-gallery-grid">
       
-      {{-- Ambil dan batasi maksimal hanya 4 entri data teratas (terbaru) --}}
       @foreach(collect($data['galeri'])->take(4) as $item)
         @php
-          // Mengatur pola lebar grid otomatis (Iterasi 1 & 4 lebar (col-lg-8), Iterasi 2 & 3 standar (col-lg-4))
           $gridClass = ($loop->iteration == 1 || $loop->iteration == 4) ? 'col-lg-8' : 'col-lg-4';
           $heightClass = ($loop->iteration == 1) ? 'grid-height-tall' : 'grid-height-standard';
           
-          // Variasi warna tema fallback jika gambar bermasalah/loading
           $themes = [
               1 => ['bg' => 'bg-rgba-blue', 'badge' => 'badge-blue', 'text' => 'Pembangunan'],
               2 => ['bg' => 'bg-rgba-crimson', 'badge' => 'badge-crimson', 'text' => 'Adat & Budaya'],
@@ -417,7 +354,6 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
                 {{ \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d F Y') }}
               </p>
               
-              {{-- Atribut Pemicu Modal Lightbox (Gunakan konfigurasi popup sebelumnya) --}}
               <a href="#" class="gallery-zoom-trigger" 
                  data-bs-toggle="modal" 
                  data-bs-target="#galleryModal" 
@@ -466,11 +402,6 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
         <h2 class="section-title-pro fw-extrabold text-darkblue mb-2 tracking-tight">Pesona Wisata Nagari</h2>
         <p class="section-subtitle-custom mb-0 text-secondary">Jelajahi keindahan alam, warisan budaya luhur, dan spot rekreasi ikonik di nagari kami.</p>
       </div>
-      {{-- <div class="col-md-4 text-center text-md-end">
-        <a href="{{ url('pesona_wisata') }}" class="btn btn-outline-primary rounded-pill px-4 btn-sm fw-semibold shadow-sm custom-font-sync">
-          Lihat Semua Destinasi <i class="fa-solid fa-arrow-right ms-2"></i>
-        </a>
-      </div> --}}
     </div>
 
     <div class="row g-4 justify-content-center">
@@ -543,54 +474,45 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
             <div class="alur-icon bg-rgba-gold"><i class="fa-solid fa-envelope-open-text text-gold"></i></div>
             <div>
               <h6 class="fw-bold text-darkblue mb-1">2. Verifikasi Internal</h6>
-              <small class="text-muted">Sistem PPID memvalidasi pesan untuk menghindari spam/hoaks.</small>
+              <small class="text-muted">Sistem memvalidasi pesan untuk menghindari spam/hoaks.</small>
             </div>
           </div>
           <div class="alur-card-mini">
             <div class="alur-icon bg-rgba-green"><i class="fa-solid fa-circle-check text-green"></i></div>
             <div>
               <h6 class="fw-bold text-darkblue mb-1">3. Tindak Lanjut</h6>
-              <small class="text-muted">Disposisi langsung ke kepala seksi terkait maksimal 3x24 jam.</small>
             </div>
           </div>
-        </div>
-
-        <div class="p-4 glass-card border-0 bg-white-50 small text-muted">
-          <i class="fa-solid fa-shield-cat text-crimson me-2"></i> Layanan ini terintegrasi dengan PPID Keterbukaan Informasi Publik Nagari.
         </div>
       </div>
 
       <div class="col-lg-7 animate__animated animate__fadeInRight">
         <div class="glass-card bento-card p-4 p-md-5 h-100 justify-content-center d-flex flex-column">
-          <form action="{{ url('aspirasi') }}" method="POST">
+          <form action="{{ url('kritik_saran') }}" method="POST" id="formAspirasi">
             @csrf
+            <input type="hidden" name="kode_instansi" value="{{ env('KODE_INSTANSI') }}">
+            <!-- Hidden Input untuk token reCAPTCHA -->
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+
             <div class="row g-4">
               <div class="col-md-6">
                 <div class="form-floating custom-floating">
-                  <input type="text" class="form-control" id="inputNama" placeholder="Nama Lengkap" required>
+                  <!-- Menambahkan atribut name="nama" -->
+                  <input type="text" name="nama" class="form-control" id="inputNama" placeholder="Nama Lengkap" required>
                   <label for="inputNama"><i class="fa-regular fa-user me-2 text-primary"></i>Nama Lengkap</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating custom-floating">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="nama@email.com" required>
+                  <!-- Menambahkan atribut name="email" -->
+                  <input type="email" name="email" class="form-control" id="inputEmail" placeholder="nama@email.com" required>
                   <label for="inputEmail"><i class="fa-regular fa-envelope me-2 text-primary"></i>Alamat Email</label>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating custom-floating">
-                  <select class="form-select form-control" id="selectKategori" aria-label="Kategori Pengaduan">
-                    <option value="pelayanan" selected>Layanan Administrasi Publik (Biru)</option>
-                    <option value="infrastruktur">Fasilitas & Jalan Umum (Gold)</option>
-                    <option value="pkk">Program Pemberdayaan & PKK (Hijau)</option>
-                    <option value="ppid">Keterbukaan Anggaran / PPID (Crimson)</option>
-                  </select>
-                  <label for="selectKategori"><i class="fa-solid fa-layer-group me-2 text-primary"></i>Kategori Aspirasi</label>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-floating custom-floating">
-                  <textarea class="form-control" placeholder="Tulis pesan Anda" id="inputPesan" style="height: 150px" required></textarea>
+                  <!-- Menambahkan atribut name="pesan" -->
+                  <textarea name="pesan" class="form-control" placeholder="Tulis pesan Anda" id="inputPesan" style="height: 150px" required></textarea>
                   <label for="inputPesan"><i class="fa-regular fa-comment-dots me-2 text-primary"></i>Uraian Aspirasi, Kritik, atau Saran</label>
                 </div>
               </div>
@@ -620,49 +542,16 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
 
 <section class="py-5">
   <div class="container-fluid">
-
       <div class="position-relative overflow-hidden rounded-5 shadow-sm border border-light-subtle" style="height: 480px;">
         <iframe 
         class="w-100 h-100 border-0"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.027706720548!2d100.02549648284909!3d-0.31785086676517177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd50d72cf2b6abb%3A0xc454edb634a851e0!2sKantor%20Wali%20Nagari%20Lubuk%20Basung!5e0!3m2!1sid!2sid!4v1782701507207!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-
-          {{-- <div class="map-floating-info-card card-glass p-4 d-none d-md-block">
-              <h5 class="fw-bold text-slate-900 mb-3 d-flex align-items-center gap-2">
-                  <i class="fa-solid fa-building-flag text-teal"></i> Pusat Koordinasi
-              </h5>
-              
-              <div class="d-flex flex-column gap-3">
-                  <div class="d-flex align-items-start gap-2 text-secondary small">
-                      <i class="fa-solid fa-location-dot text-muted mt-1" style="width: 16px;"></i>
-                      <div>
-                        <span class="fw-bold text-dark d-block mb-0.5">Alamat Kantor:</span>
-                        Jalan Raya Utama Nagari, Gedung Sekretariat Bersama, Lt. 2, Sumatera Barat.
-                      </div>
-                  </div>
-
-                  <div class="d-flex align-items-start gap-2 text-secondary small">
-                      <i class="fa-solid fa-clock text-muted mt-1" style="width: 16px;"></i>
-                      <div>
-                        <span class="fw-bold text-dark d-block mb-0.5">Jam Layanan:</span>
-                        Senin - Jumat (08:00 - 16:00 WIB)
-                      </div>
-                  </div>
-              </div>
-
-              <div class="mt-4 pt-3 border-top border-light-subtle">
-                  <a href="https://maps.google.com/maps?q=Kantor%20Wali%20Nagari%20Sumatera%20Barat" target="_blank" class="btn btn-teal-premium btn-sm w-100 rounded-pill py-2 text-white fw-bold text-decoration-none d-flex align-items-center justify-content-center gap-2">
-                      <i class="fa-solid fa-route"></i> Petunjuk Arah
-                  </a>
-              </div>
-          </div> --}}
-
       </div>
   </div>
 </section>
 
 
 <style>
-  /* CSS Posisi Kartu Informasi Melayang */
   .map-floating-info-card {
       position: absolute;
       top: 40px;
@@ -672,8 +561,6 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
       box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
       border: 1px solid rgba(255, 255, 255, 0.8) !important;
   }
-
-  /* Tombol Akses Rute */
   .btn-teal-premium {
       background: linear-gradient(135deg, var(--pkk-teal), #14b8a6);
       border: none;
@@ -687,5 +574,14 @@ background-image: url('{{ asset('assets/images/bg-image4.png') }}');">
   }
 </style>
 
+<!-- Google reCAPTCHA v3 Integration Script -->
+<script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
+<script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('{{ env('RECAPTCHA_SITE_KEY') }}', {action: 'aspirasi'}).then(function(token) {
+          document.getElementById('g-recaptcha-response').value = token;
+      });
+  });
+</script>
 
 @endsection
