@@ -23,6 +23,7 @@ Route::get('apbn', [HomeController::class, 'apbn']);
 Route::get('lkppn', [HomeController::class, 'lkppn']);
 Route::get('lpj', [HomeController::class, 'lpj']);
 Route::post('kritik_saran', [HomeController::class, 'kritikSaran']);
+Route::get('desa_cantik', [HomeController::class, 'desaCantik']);
 // ===================== End Menu Nagari
 
 // ===================== Menu PPID Nagari

@@ -192,6 +192,16 @@ class HomeController extends Controller
     }
 
 
+    public function desaCantik(){
+        $data = $this->getNagariData();
+        // return response()->json($data['desa_cantik']);
+        return view('pages.desa_cantik', [ 'data'   => $data ]);
+    }
+
+
+
+
+
 
 
 

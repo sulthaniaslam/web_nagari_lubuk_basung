@@ -85,6 +85,7 @@
                 <li><a class="dropdown-item-pro" href="{{ url('struktur_nagari') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-sitemap text-green"></i></span> Struktur Nagari</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('galeri') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-image text-green"></i></span> Galeri</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('berita') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-edit text-gold"></i></span> Berita</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('desa_cantik') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-circle text-primary"></i></span> Desa Cantik</a></li>
               </ul>
             </li>
 
