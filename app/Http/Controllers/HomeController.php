@@ -404,7 +404,7 @@ class HomeController extends Controller
 
             // 4. Ambil response dari server
             $result = $response->json();
-
+            return response()->json($result);
             // 5. Evaluasi status response API dari Server
             if ($response->successful() && isset($result['success']) && $result['success'] === true) {
                 

@@ -75,7 +75,8 @@
                   <div class="card card-file border-0 shadow-sm rounded-4 h-100 overflow-hidden">
                     <div class="file-preview-wrapper bg-light text-center d-flex align-items-center justify-content-center" style="height: 180px; position: relative;">
                       @if($isImage)
-                        <img src="{{ $fileUrl }}" alt="{{ $item['nama_file'] }}" class="w-100 h-100" style="object-fit: cover;">
+                        <img src="https://rangkiang.agamkab.go.id/storage/desa_cantik/{{ $item['file'] }}" alt="{{ $item['nama_file'] }}" class="w-100 h-100" style="object-fit: cover;">
+                        {{-- <img src="{{ $fileUrl }}" alt="{{ $item['nama_file'] }}" class="w-100 h-100" style="object-fit: cover;"> --}}
                       @else
                         <div class="p-3 text-secondary">
                           <i class="fa-solid fa-file-pdf fa-4x text-danger mb-2"></i>
