@@ -30,6 +30,7 @@ Route::get('desa_cantik', [HomeController::class, 'desaCantik']);
 Route::get('ppid_nagari', [HomeController::class, 'ppidNagari']);
 Route::get('ppid_informasi_publik', [HomeController::class, 'ppidInformasiPublik']);
 Route::get('ppid_regulasi', [HomeController::class, 'ppidRegulasi']);
+Route::get('ppid_formulir', [HomeController::class, 'ppidFormulir']);
 Route::get('ppid_permohonan_informasi', [HomeController::class, 'ppidPermohonanInformasi']);
 Route::post('ppid_permohonan_informasi/send', [HomeController::class, 'ppidPermohonanInformasiSend']);
 Route::get('ppid_cek_permohonan_informasi', [HomeController::class, 'ppidCekPermohonanInformasi']);

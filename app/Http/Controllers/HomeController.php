@@ -219,6 +219,15 @@ class HomeController extends Controller
         $data = $this->getNagariData();
         return view('pages.ppid.ppid_informasi_publik', ['data' => $data]);
     }
+
+    public function ppidFormulir(){
+        $data = $this->getNagariData();
+        // return response()->json($data['ppid_pelayanan_publik'][0]['formulir']);
+        return view('pages.ppid.ppid_formulir', [
+            'data' => $data,
+            'formulir' => $data['ppid_pelayanan_publik'][0]['formulir']
+        ]);
+    }
     
     public function ppidPermohonanInformasi(){
         $data = $this->getNagariData();
@@ -404,7 +413,7 @@ class HomeController extends Controller
 
             // 4. Ambil response dari server
             $result = $response->json();
-            return response()->json($result);
+            
             // 5. Evaluasi status response API dari Server
             if ($response->successful() && isset($result['success']) && $result['success'] === true) {
                 

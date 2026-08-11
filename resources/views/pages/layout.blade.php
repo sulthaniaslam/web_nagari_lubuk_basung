@@ -112,6 +112,7 @@
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_informasi_publik') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-info-circle text-primary"></i></span> Daftar Informasi Publik</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_regulasi') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-edit text-warning"></i></span> Regulasi PPID</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_alur_pelayanan') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-route text-success"></i></span> Alur Pelayanan</a></li>
+                <li><a class="dropdown-item-pro" href="{{ url('ppid_formulir') }}"><span class="drop-icon-bg bg-rgba-blue"><i class="fa-solid fa-download text-danger"></i></span> Formulir</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-gold"><i class="fa-solid fa-file-signature text-gold"></i></span> Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_cek_permohonan_informasi') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-magnifying-glass text-green"></i></span> Cek Permohonan Informasi</a></li>
                 <li><a class="dropdown-item-pro" href="{{ url('ppid_pengajuan_keberatan') }}"><span class="drop-icon-bg bg-rgba-green"><i class="fa-solid fa-warning text-danger"></i></span> Pengajuan Keberatan</a></li>
