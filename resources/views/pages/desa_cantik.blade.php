@@ -66,7 +66,7 @@
                 @php
                   $extension = pathinfo($item['file'] ?? '', PATHINFO_EXTENSION);
                   $isImage = in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-                  $fileUrl = asset('storage/desa_cantik/' . $item['file']);
+                  $fileUrl = "https://rangkiang.agamkab.go.id/storage/desa_cantik/" . $item['file'];
                   $createdDate = !empty($item['created_at']) 
                       ? \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d M Y') 
                       : '-';
@@ -75,8 +75,7 @@
                   <div class="card card-file border-0 shadow-sm rounded-4 h-100 overflow-hidden">
                     <div class="file-preview-wrapper bg-light text-center d-flex align-items-center justify-content-center" style="height: 180px; position: relative;">
                       @if($isImage)
-                        <img src="https://rangkiang.agamkab.go.id/storage/desa_cantik/{{ $item['file'] }}" alt="{{ $item['nama_file'] }}" class="w-100 h-100" style="object-fit: cover;">
-                        {{-- <img src="{{ $fileUrl }}" alt="{{ $item['nama_file'] }}" class="w-100 h-100" style="object-fit: cover;"> --}}
+                        <img src="{{ $fileUrl }}" alt="{{ $item['nama_file'] }}" class="w-100 h-100" style="object-fit: cover;">
                       @else
                         <div class="p-3 text-secondary">
                           <i class="fa-solid fa-file-pdf fa-4x text-danger mb-2"></i>
@@ -85,9 +84,20 @@
                       @endif
 
                       <div class="file-overlay d-flex align-items-center justify-content-center">
-                        <a href="{{ $fileUrl }}" target="_blank" class="btn btn-emerald btn-sm rounded-pill px-3 shadow">
-                          <i class="fa-solid fa-eye me-1"></i> Lihat Dokumen
-                        </a>
+                        @if($isImage)
+                          <button type="button" 
+                                  class="btn btn-emerald btn-sm rounded-pill px-3 shadow btn-preview-image"
+                                  data-bs-toggle="modal" 
+                                  data-bs-target="#imagePreviewModal" 
+                                  data-img="{{ $fileUrl }}" 
+                                  data-title="{{ $item['nama_file'] }}">
+                            <i class="fa-solid fa-eye me-1"></i> Lihat Gambar
+                          </button>
+                        @else
+                          <a href="{{ $fileUrl }}" target="_blank" class="btn btn-emerald btn-sm rounded-pill px-3 shadow">
+                            <i class="fa-solid fa-eye me-1"></i> Lihat Dokumen
+                          </a>
+                        @endif
                       </div>
                     </div>
 
@@ -137,7 +147,7 @@
                 @php
                   $extension = pathinfo($item['file'] ?? '', PATHINFO_EXTENSION);
                   $isImage = in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-                  $fileUrl = asset('storage/desa_cantik/' . $item['file']);
+                  $fileUrl = env('API_STORAGE') . '/desa_cantik/' . $item['file'];
                   $createdDate = !empty($item['created_at']) 
                       ? \Carbon\Carbon::parse($item['created_at'])->translatedFormat('d M Y') 
                       : '-';
@@ -155,9 +165,20 @@
                       @endif
 
                       <div class="file-overlay d-flex align-items-center justify-content-center">
-                        <a href="{{ $fileUrl }}" target="_blank" class="btn btn-emerald btn-sm rounded-pill px-3 shadow">
-                          <i class="fa-solid fa-eye me-1"></i> Lihat Dokumen
-                        </a>
+                        @if($isImage)
+                          <button type="button" 
+                                  class="btn btn-emerald btn-sm rounded-pill px-3 shadow btn-preview-image"
+                                  data-bs-toggle="modal" 
+                                  data-bs-target="#imagePreviewModal" 
+                                  data-img="{{ $fileUrl }}" 
+                                  data-title="{{ $item['nama_file'] }}">
+                            <i class="fa-solid fa-eye me-1"></i> Lihat Gambar
+                          </button>
+                        @else
+                          <a href="{{ $fileUrl }}" target="_blank" class="btn btn-emerald btn-sm rounded-pill px-3 shadow">
+                            <i class="fa-solid fa-eye me-1"></i> Lihat Dokumen
+                          </a>
+                        @endif
                       </div>
                     </div>
 
@@ -204,6 +225,27 @@
 
   </div>
 </main>
+
+<!-- MODAL PREVIEW GAMBAR -->
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold text-dark fs-6" id="imagePreviewModalLabel">Pratinjau Gambar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-4">
+        <img id="modalPreviewImage" src="" alt="Pratinjau" class="img-fluid rounded-3 shadow-sm mb-3" style="max-height: 65vh; object-fit: contain;">
+      </div>
+      <div class="modal-footer border-0 pt-0 justify-content-center">
+        <!-- Tombol Download Tambahan di Pop-up -->
+        <a id="modalDownloadBtn" href="" download class="btn btn-emerald rounded-pill px-4 shadow-sm">
+          <i class="fa-solid fa-download me-1"></i> Unduh Gambar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
   .text-emerald {
@@ -278,4 +320,29 @@
   .fs-7 { font-size: 0.8rem; }
   .fs-8 { font-size: 0.75rem; }
 </style>
+
+<!-- SCRIPT UNTUK DYNAMIC MODAL -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll('.btn-preview-image');
+    const modalImage = document.getElementById('modalPreviewImage');
+    const modalTitle = document.getElementById('imagePreviewModalLabel');
+    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        const imgSrc = this.getAttribute('data-img');
+        const title = this.getAttribute('data-title');
+
+        modalImage.setAttribute('src', imgSrc);
+        modalTitle.textContent = title || 'Pratinjau Gambar';
+        
+        // Memasang URL gambar ke tombol download modal
+        if (modalDownloadBtn) {
+          modalDownloadBtn.setAttribute('href', imgSrc);
+        }
+      });
+    });
+  });
+</script>
 @endsection
