@@ -48,6 +48,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
+    <!-- STYLING SCROLL TO TOP BUTTON -->
+    <style>
+      .btn-scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 48px;
+        height: 48px;
+        background: #990000; /* Warna merah crimson disesuaikan dengan tema */
+        color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease-in-out;
+        z-index: 999;
+      }
+
+      .btn-scroll-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .btn-scroll-top:hover {
+        background-color: #770000;
+        color: #ffffff;
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Penyesuaian jarak posisi jika berada pada tampilan mobile */
+      @media (max-width: 576px) {
+        .btn-scroll-top {
+          bottom: 20px;
+          right: 20px;
+          width: 42px;
+          height: 42px;
+          font-size: 1rem;
+        }
+      }
+    </style>
   </head>
   <body>
 
@@ -264,6 +313,11 @@
         </div>
     </footer>
 
+    <!-- TOMBOL SCROLL TO TOP -->
+    <button type="button" class="btn-scroll-top" id="btnScrollTop" title="Kembali ke atas" aria-label="Kembali ke atas">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <button class="accessibility-toggle" id="accToggle" aria-label="Menu Aksesibilitas" title="Menu Aksesibilitas">♿</button>
     
     <div class="accessibility-panel" id="accPanel">
@@ -372,6 +426,26 @@
                 window.speechSynthesis.speak(utterance);
             }
         }
+
+        // Logika Fitur Scroll to Top
+        const btnScrollTop = document.getElementById('btnScrollTop');
+
+        window.addEventListener('scroll', () => {
+            // Tampilkan tombol jika scroll melebihi 300px
+            if (window.scrollY > 300) {
+                btnScrollTop.classList.add('show');
+            } else {
+                btnScrollTop.classList.remove('show');
+            }
+        });
+
+        btnScrollTop.addEventListener('click', () => {
+            // Scroll ke atas halaman secara mulus
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
